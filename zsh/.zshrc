@@ -30,9 +30,8 @@ alias cat="bat"
 # ============================================================
 # SSH with tmux auto-attach
 sshtmux() {
-  ssh -t "$1" "tmux new -A -s main"
+  TERM=xterm-256color ssh -t "$1" "tmux new -A -s main"
 }
-
 # ============================================================
 # History Configuration
 # ============================================================
