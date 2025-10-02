@@ -1,0 +1,127 @@
+# Ghostty Configuration
+# Location: ~/.config/ghostty/config
+
+# Font Configuration
+font-family = JetBrains Mono
+font-size = 13
+
+# Theme
+theme = TokyoNight Night
+
+# Window Configuration
+window-decoration = none
+window-padding-x = 0
+window-padding-y = 0
+
+# Background (Ghostty doesn't support blur on macOS like WezTerm)
+background-opacity = 1.0
+
+# Initial window size (approximate)
+window-width = 180
+window-height = 50
+
+# Shell and Environment
+# Add homebrew to PATH
+# Note: You may need to set this in your shell profile instead
+# shell-integration = true
+
+# Keybindings
+# Note: Ghostty uses different modifier syntax:
+# - ctrl = Control
+# - cmd/super = Command (macOS) / Super (Linux)
+# - alt/opt = Option (macOS) / Alt (Linux)
+# - shift = Shift
+
+# Leader key concept doesn't exist in Ghostty directly
+# We'll map some common actions instead
+
+# Option + Arrow keys for word navigation
+keybind = opt+left=text:\x1bb
+keybind = opt+right=text:\x1bf
+
+# Open config file (cmd+comma is standard on macOS)
+# Note: Ghostty doesn't support opening files directly in new tabs
+# Use your shell/editor to open the config instead
+
+# Split panes (using more standard bindings)
+# Ghostty uses different syntax than WezTerm's leader concept
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+
+# Navigate between splits (using ctrl+hjkl like vim)
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+# Resize splits
+keybind = ctrl+shift+h=resize_split:left,10
+keybind = ctrl+shift+j=resize_split:down,10
+keybind = ctrl+shift+k=resize_split:up,10
+keybind = ctrl+shift+l=resize_split:right,10
+
+# Tab management (standard macOS bindings work by default)
+# cmd+t for new tab
+# cmd+w to close tab
+# cmd+number to switch to specific tab
+# cmd+shift+[ and ] to navigate tabs
+
+# Close current split/pane
+keybind = cmd+w=close_surface
+
+
+# ============================================================
+# NOTES ON FEATURES THAT DON'T TRANSLATE DIRECTLY:
+# ============================================================
+#
+# 1. CUSTOM STATUS BAR:
+#    WezTerm's custom status bar with workspace name, time, and hostname
+#    is not available in Ghostty. Ghostty has a simpler tab/title system.
+#
+# 2. PROJECT PICKER:
+#    The project picker that lists ~/Projects subdirectories and switches
+#    to workspaces doesn't have a direct equivalent. You could:
+#    - Use a shell script with fzf to achieve similar functionality
+#    - Use tmux/zellij for workspace management
+#    - Create a custom shell function that opens new Ghostty windows
+#
+# 3. WORKSPACE SWITCHING:
+#    Ghostty doesn't have a built-in workspace concept like WezTerm.
+#    Consider using:
+#    - Multiple Ghostty windows
+#    - tmux or zellij for session management
+#    - macOS Spaces for workspace organization
+#
+# 4. APPEARANCE DETECTION:
+#    Ghostty automatically adapts to system light/dark mode if your theme
+#    supports it. No manual detection needed.
+#
+# 5. DYNAMIC STATUS/THEMING:
+#    The gradient status bar and dynamic theming won't work in Ghostty.
+#    Ghostty focuses on simplicity and performance over customization.
+#
+# 6. KEY TABLES / LEADER KEY:
+#    Ghostty doesn't have a "leader key" concept or key tables.
+#    You'll need to use direct keybindings instead.
+#
+# ============================================================
+# ALTERNATIVE WORKFLOW SUGGESTIONS:
+# ============================================================
+#
+# For project management, consider creating a shell script like:
+#
+#   #!/bin/bash
+#   # ~/bin/project-picker.sh
+#   project=$(find ~/Projects -maxdepth 1 -type d | fzf)
+#   if [ -n "$project" ]; then
+#     cd "$project" && ghostty &
+#   fi
+#
+# Then bind this to a system-wide hotkey using macOS Shortcuts or
+# a tool like skhd.
+#
+# For workspace management, consider using tmux or zellij instead,
+# which work great inside Ghostty and provide even more powerful
+# session management than WezTerm's workspaces.
+#
+# ============================================================
