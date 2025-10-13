@@ -49,6 +49,6 @@ autoload -Uz compinit && compinit
 
 # UV CLI                                                   
 export PATH="$HOME/.local/bin:$PATH"
-export UV_PYTHON="3.12"
+export UV_PYTHON="3.13"
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
