@@ -14,7 +14,6 @@ cask "ghostty"
 cask "maccy"
 cask "rectangle"
 cask "shottr"
-cask "wezterm"
 
 
 
