@@ -12,7 +12,6 @@ brew "git"
 
 cask "ghostty"
 cask "maccy"
-cask "rectangle"
 cask "shottr"
 
 
