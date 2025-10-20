@@ -50,8 +50,8 @@ outer.bottom = 5
 # outer.top = [{ monitor.main = 40}, 40]
 outer.top = [
   { monitor."built-in" = 10 }, # Matches MacBook screen (with the notch)
-  { monitor."main" = 45 },     # Applies to whichever display is currently "main"
-  45,                          # Fallback default for all others
+  { monitor."main" = 10 },     # Applies to whichever display is currently "main"
+  10,                          # Fallback default for all others
 ]
 outer.right = 5
 outer.left = 5
