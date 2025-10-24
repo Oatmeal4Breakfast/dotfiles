@@ -90,8 +90,8 @@ outer.left = 5
 alt-b = 'exec-and-forget open -a /Applications/Brave\ Browser.app'
 alt-t = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-p = 'exec-and-forget open -a /Applications/Adobe\ Lightroom\ Classic/Adobe\ Lightroom\ Classic.app'
-alt-w = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-d = 'exec-and-forget open -a /Applications/Discord.app'
+alt-m = 'exec-and-forget open -a /Applications/Messages.app'
 
 # See: https://nikitabobko.github.ioeAeroSpace/commands#layout
 alt-e = 'layout tiles horizontal vertical'
@@ -182,6 +182,11 @@ run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = ['move-node-to-workspace 3']
+
 
 # [workspace-to-monitor-force-assignment]
 # 1 = 'main'                  # Monitor sequence number from left to right. 1-based indexing
