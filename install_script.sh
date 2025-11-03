@@ -4,7 +4,7 @@
 
 set -e
 
-echo "🚀 Setting up your development environment..."
+echo "Setting up your development environment..."
 
 # Colors for output
 RED='\033[0;31m'
@@ -54,7 +54,10 @@ brew install \
   eza \
   ripgrep \
   fd \
-  jq
+  jq \
+  htop \
+  aerospace \
+  tree
 
 # Install Ghostty (if not installed)
 if [ ! -d "/Applications/Ghostty.app" ]; then
@@ -91,6 +94,7 @@ create_symlink "tmux/.tmux.conf" "$HOME/.tmux.conf"
 create_symlink "ghostty/config" "$HOME/.config/ghostty/config"
 create_symlink "starship/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "nvim" "$HOME/.config/nvim"
+create_symlink "aerospace" "$HOME/.aerospace.toml"
 
 # Install fzf key bindings
 echo -e "${YELLOW}Setting up fzf...${NC}"
