@@ -51,4 +51,7 @@ autoload -Uz compinit && compinit
 export PATH="$HOME/.local/bin:$PATH"
 export UV_PYTHON="3.13"
 
+# expand the file descripter limit for my shell
+ulimit -n 10240
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
