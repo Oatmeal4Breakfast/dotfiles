@@ -1,33 +1,28 @@
+tap "nikitabobko/tap"
 brew "bat"
 brew "eza"
 brew "fzf"
+brew "glow"
+brew "htop"
+brew "imagemagick"
+brew "lazygit"
 brew "neovim"
 brew "node"
 brew "starship"
 brew "tmux"
+brew "tree"
 brew "zplug"
 brew "zsh-syntax-highlighting"
-brew "git"
-
-
+cask "nikitabobko/tap/aerospace"
+cask "db-browser-for-sqlite"
 cask "ghostty"
+cask "google-chrome"
+cask "hiddenbar"
 cask "maccy"
 cask "shottr"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+cask "stats"
+cask "wezterm"
+uv "harlequin[postgres]"
+uv "posting"
+uv "ruff"
+uv "ty"
