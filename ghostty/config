@@ -125,3 +125,7 @@ keybind = cmd+w=close_surface
 # session management than WezTerm's workspaces.
 #
 # ============================================================
+
+custom-shader-animation = always
+custom-shader = shaders/ghostty-cursor-trails/boo-cursor.glsl
+
