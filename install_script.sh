@@ -33,7 +33,7 @@ fi
 # Clone dotfiles repo if not exists
 if [ ! -d "$DOTFILES_DIR" ]; then
   echo -e "${YELLOW}Cloning dotfiles repository...${NC}"
-  git clone https://github.com/yourusername/dotfiles.git "$DOTFILES_DIR"
+  git clone https://github.com/Oatmeal4Breakfast/dotfiles.git "$DOTFILES_DIR"
 else
   echo -e "${GREEN}✓ Dotfiles directory exists${NC}"
   cd "$DOTFILES_DIR"

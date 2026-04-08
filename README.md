@@ -10,8 +10,13 @@ Personal configuration files for macOS development environment.
 - **Neovim** - LazyVim configuration
 - **Starship** - Cross-shell prompt
 - **aerospace** - i3 style window tiler
+- **btop** - htop like tui
+- **lazygit** - git tui
+- **uv** - python environment management
+  and much more
 
 ## Quick Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/dotfiles/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Oatmeal4Breakfast/dotfiles/main/install.sh | bash
+```
