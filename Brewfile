@@ -29,7 +29,7 @@ brew "node"
 brew "ripgrep"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Symlink manager for dotfiles
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
