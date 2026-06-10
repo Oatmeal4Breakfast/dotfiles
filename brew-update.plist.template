@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.thoughts.brew-update</string>
+    <string>com.__USER__.brew-update</string>
 
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/thoughts/dotfiles/brew-update.sh</string>
+        <string>__HOME__/dotfiles/brew-update.sh</string>
     </array>
 
     <key>StartCalendarInterval</key>
@@ -19,10 +19,10 @@
     </dict>
 
     <key>StandardOutPath</key>
-    <string>/Users/thoughts/Library/Logs/brew-maintenance.log</string>
+    <string>__HOME__/Library/Logs/brew-maintenance.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/Users/thoughts/Library/Logs/brew-maintenance.log</string>
+    <string>__HOME__/Library/Logs/brew-maintenance.log</string>
 
     <key>RunAtLoad</key>
     <false/>

@@ -29,6 +29,8 @@ brew "node"
 brew "ripgrep"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Symlink manager for dotfiles
+brew "stow"
 # Terminal multiplexer
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
