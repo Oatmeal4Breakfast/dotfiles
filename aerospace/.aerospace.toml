@@ -5,9 +5,6 @@ start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
-# The 'accordion-padding' specifies the size of accordion padding
-# You can set 0 to disable the padding feature
 accordion-padding = 0
 
 # Possible values: tiles|accordion
@@ -92,6 +89,8 @@ alt-t = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-p = 'exec-and-forget open -a /Applications/Adobe\ Lightroom\ Classic/Adobe\ Lightroom\ Classic.app'
 alt-d = 'exec-and-forget open -a /Applications/Discord.app'
 alt-m = 'exec-and-forget open -a /Applications/Messages.app'
+alt-n = 'exec-and-forget open -a /Applications/Notion.app'
+
 
 # See: https://nikitabobko.github.ioeAeroSpace/commands#layout
 alt-e = 'layout tiles horizontal vertical'
@@ -157,8 +156,6 @@ f = [
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
-# sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-#s = ['layout sticky tiling', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
@@ -180,21 +177,14 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.app-id = 'com.apple.MobileSMS'
+if.app-id = 'notion.id'
 run = ['move-node-to-workspace 3']
+
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = ['move-node-to-workspace 3']
-
-
-# [workspace-to-monitor-force-assignment]
-# 1 = 'main'                  # Monitor sequence number from left to right. 1-based indexing
-# 2 = 'main'                  # Main monitor
-# 3 = 'main'                  # Non-main monitor in case when there are only two monitors
-# 4 = 'main'                  # Non-main monitor in case when there are only two monitors
-# 5 = 'main'
-# 6 = 'main'
-# 7 = 'main'
-# 8 = 'main'
-# 9 = 'secondary'
+run = ['move-node-to-workspace 4']
