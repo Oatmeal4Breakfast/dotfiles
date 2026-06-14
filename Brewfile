@@ -1,4 +1,8 @@
 tap "nikitabobko/tap"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Automate deployment, configuration, and upgrading
+brew "ansible"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -15,8 +19,12 @@ brew "gh"
 brew "glow"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Kubernetes package manager
+brew "helm"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Deep clean and optimize your Mac
@@ -35,6 +43,8 @@ brew "stow"
 brew "tmux"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Next-generation plugin manager for zsh
 brew "zplug"
 # Fish shell like syntax highlighting for zsh
