@@ -41,8 +41,6 @@ brew "starship"
 brew "stow"
 # Terminal multiplexer
 brew "tmux"
-# Display directories as trees (with optional color/HTML output)
-brew "tree"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Next-generation plugin manager for zsh
@@ -67,4 +65,9 @@ cask "notion"
 cask "shottr"
 # System monitor for the menu bar
 cask "stats"
+uv "dutyy"
+uv "harlequin[postgres]"
+uv "posting"
+uv "ruff"
+uv "ty"
 npm "prettier"
