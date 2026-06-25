@@ -5,4 +5,4 @@ adapter = "postgres"
 theme = "tokyo-night"
 limit = 100000
 keymap_name = ["vscode"]
-conn_str = ["postgres://test:test@localhost:5432/test_db"]
+conn_str = ["postgresql://test:test@localhost:5432/test-db"]
