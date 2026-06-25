@@ -1,0 +1,8 @@
+default_profile = "local_postgres"
+
+[profiles.local_postgres]
+adapter = "postgres"
+theme = "tokyo-night"
+limit = 100000
+keymap_name = ["vscode"]
+conn_str = ["postgres://test:test@localhost:5432/test_db"]
