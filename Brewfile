@@ -59,6 +59,8 @@ cask "bitwarden"
 cask "brave-browser"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
+# Universal database tool and SQL client
+cask "dbeaver-community"
 # Voice and text chat software
 cask "discord"
 # Web browser
@@ -84,7 +86,6 @@ cask "steam"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
 uv "dutyy"
-uv "harlequin[postgres]"
 uv "posting"
 uv "ruff"
 uv "ty"
