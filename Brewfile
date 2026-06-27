@@ -53,6 +53,8 @@ brew "zsh-syntax-highlighting"
 cask "nikitabobko/tap/aerospace"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
+# Universal database tool and SQL client
+cask "dbeaver-community"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Web browser
