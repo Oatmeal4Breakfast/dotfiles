@@ -85,7 +85,7 @@ cask "stats"
 cask "steam"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm"
-uv "dutyy"
+uv "dutyy", source: "git+https://github.com/Oatmeal4Breakfast/dutyy.git"
 uv "posting"
 uv "ruff"
 uv "ty"
