@@ -7,8 +7,6 @@ brew "ansible"
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Terminal-based dashboard for managing cron jobs locally and on servers
-brew "cronboard"
 # Modern, maintained replacement for ls
 brew "eza"
 # Simple, fast and user-friendly alternative to find
@@ -51,20 +49,11 @@ brew "uv"
 brew "zplug"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace"
-# Desktop password and login vault
-cask "bitwarden"
-# Web browser focusing on privacy
-cask "brave-browser"
+cask "aerospace"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # Universal database tool and SQL client
 cask "dbeaver-community"
-# Voice and text chat software
-cask "discord"
-# Web browser
-cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Web browser
@@ -77,16 +66,12 @@ cask "maccy"
 cask "notion"
 # Screenshot measurement and annotation tool
 cask "shottr"
-# Music streaming service
-cask "spotify"
 # System monitor for the menu bar
 cask "stats"
-# Video game digital distribution service
-cask "steam"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
 uv "dutyy", source: "git+https://github.com/Oatmeal4Breakfast/dutyy.git"
+uv "harlequin[postgres]"
 uv "posting"
+uv "pre-commit"
 uv "ruff"
 uv "ty"
 npm "prettier"
