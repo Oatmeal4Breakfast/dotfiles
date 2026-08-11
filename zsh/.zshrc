@@ -55,3 +55,6 @@ export PATH="$HOME/.local/bin:$PATH"
 ulimit -n 10240
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# opencode
+export PATH=/Users/thoughts/.opencode/bin:$PATH
