@@ -84,7 +84,7 @@ outer.left = 5
 # '''
 
 # App shortcuts
-alt-b = 'exec-and-forget open -a /Applications/Brave\ Browser.app'
+alt-b = 'exec-and-forget open -a /Applications/Firefox.app/'
 alt-t = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-p = 'exec-and-forget open -a /Applications/Adobe\ Lightroom\ Classic/Adobe\ Lightroom\ Classic.app'
 alt-d = 'exec-and-forget open -a /Applications/Discord.app'
@@ -164,7 +164,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # Default space
 [[on-window-detected]]
-if.app-id = 'com.brave.Browser'
+if.app-id = 'org.mozilla.firefox'
 run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
