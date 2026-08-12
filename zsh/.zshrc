@@ -56,14 +56,11 @@ ulimit -n 10240
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-<<<<<<< Updated upstream
 # opencode
 export PATH=/Users/thoughts/.opencode/bin:$PATH
-=======
 # bun completions
 [ -s "/Users/elvinsalcedo/.bun/_bun" ] && source "/Users/elvinsalcedo/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
->>>>>>> Stashed changes
