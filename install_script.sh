@@ -12,7 +12,7 @@ NC='\033[0m'
 DOTFILES_DIR="$HOME/dotfiles"
 LAUNCH_AGENTS_DIR="$HOME/Library/LaunchAgents"
 PLIST_LABEL="com.${USER}.brew-update"
-PLIST_DEST="$LAUNCH_AGENTS_DIR/$PLIST_LABEL.plist"
+WALLSYNC_PLIST_LABEL="com.${USER}.wallsync"
 
 if [[ "$OSTYPE" != "darwin"* ]]; then
   echo -e "${RED}This script is designed for macOS${NC}"
@@ -81,30 +81,46 @@ clear_stow_target "$HOME/.config/nvim"
 stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh
 echo -e "${GREEN}✓ Stowed all packages${NC}"
 
-# ── LaunchAgent for brew-update ──────────────────────────────────────────────
+# ── LaunchAgents ─────────────────────────────────────────────────────────────
 
-echo -e "${YELLOW}Installing brew-update LaunchAgent...${NC}"
+# install_launch_agent <template-file> <label>
+# Renders the template into $DOTFILES_DIR/<label>.plist, symlinks it into
+# ~/Library/LaunchAgents, and (re)loads it.
+install_launch_agent() {
+  local template="$DOTFILES_DIR/$1"
+  local label="$2"
+  local generated="$DOTFILES_DIR/$label.plist"
+  local dest="$LAUNCH_AGENTS_DIR/$label.plist"
+
+  # Generate plist from template, substituting __HOME__ and __USER__
+  sed \
+    -e "s|__HOME__|$HOME|g" \
+    -e "s|__USER__|$USER|g" \
+    "$template" >"$generated"
+
+  # Symlink into LaunchAgents, backing up any existing real file
+  if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+    mv "$dest" "$dest.backup.$(date +%Y%m%d_%H%M%S)"
+  fi
+
+  ln -sf "$generated" "$dest"
+  echo -e "${GREEN}✓ Linked $dest${NC}"
+
+  # Load (or reload) the agent
+  launchctl unload "$dest" 2>/dev/null || true
+  launchctl load "$dest"
+}
 
 mkdir -p "$LAUNCH_AGENTS_DIR"
 
-# Generate plist from template, substituting __HOME__ and __USER__
-sed \
-  -e "s|__HOME__|$HOME|g" \
-  -e "s|__USER__|$USER|g" \
-  "$DOTFILES_DIR/brew-update.plist.template" > "$DOTFILES_DIR/$PLIST_LABEL.plist"
+echo -e "${YELLOW}Installing brew-update LaunchAgent...${NC}"
+install_launch_agent "brew-update.plist.template" "$PLIST_LABEL"
+echo -e "${GREEN}✓ brew-update loaded (runs daily at 09:00)${NC}"
 
-# Symlink into LaunchAgents, backing up any existing real file
-if [ -e "$PLIST_DEST" ] && [ ! -L "$PLIST_DEST" ]; then
-  mv "$PLIST_DEST" "$PLIST_DEST.backup.$(date +%Y%m%d_%H%M%S)"
-fi
-
-ln -sf "$DOTFILES_DIR/$PLIST_LABEL.plist" "$PLIST_DEST"
-echo -e "${GREEN}✓ Linked $PLIST_DEST${NC}"
-
-# Load (or reload) the agent
-launchctl unload "$PLIST_DEST" 2>/dev/null || true
-launchctl load "$PLIST_DEST"
-echo -e "${GREEN}✓ LaunchAgent loaded (runs daily at 09:00)${NC}"
+echo -e "${YELLOW}Installing wallsync LaunchAgent...${NC}"
+chmod +x "$DOTFILES_DIR/wallsync.sh"
+install_launch_agent "wallsync.plist.template" "$WALLSYNC_PLIST_LABEL"
+echo -e "${GREEN}✓ wallsync loaded (runs daily at 09:00)${NC}"
 
 # ─────────────────────────────────────────────────────────────────────────────
 
