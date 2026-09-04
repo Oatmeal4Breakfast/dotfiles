@@ -41,6 +41,11 @@ fi
 echo -e "${YELLOW}Installing packages from Brewfile...${NC}"
 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
+# Installing Opencode
+echo -e "${YELLOW}Installing OpenCode...${NC}"
+curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path
+echo -e "${GREEN}✓ OpenCode installed${NC}"
+
 # Install fzf key bindings
 echo -e "${YELLOW}Setting up fzf...${NC}"
 "$(brew --prefix)/opt/fzf/install" --key-bindings --completion --no-update-rc
@@ -77,8 +82,9 @@ clear_stow_target "$HOME/.aerospace.toml"
 # Packages whose top-level stow targets are dirs inside $HOME/.config
 clear_stow_target "$HOME/.config/ghostty"
 clear_stow_target "$HOME/.config/nvim"
+clear_stow_target "$HOME/.config/opencode/opencode.jsonc"
 
-stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh
+stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh opencode
 echo -e "${GREEN}✓ Stowed all packages${NC}"
 
 # ── LaunchAgents ─────────────────────────────────────────────────────────────

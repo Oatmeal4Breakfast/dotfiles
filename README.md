@@ -5,6 +5,7 @@ Personal configuration files for macOS development environment, managed with [GN
 ## What's Included
 
 - **Zsh** - Shell configuration with Starship prompt
+- OpenCode - LLM Coding Harness
 - **Tmux** - Terminal multiplexer for session management
 - **Ghostty** - Fast, modern terminal emulator
 - **Neovim** - LazyVim configuration
@@ -22,11 +23,13 @@ curl -fsSL https://raw.githubusercontent.com/Oatmeal4Breakfast/dotfiles/main/ins
 ```
 
 The script will:
+
 1. Install Homebrew (if needed)
 2. Clone this repo to `~/dotfiles`
 3. Install all packages from `Brewfile` (includes `stow`)
-4. Use stow to symlink each config package into `$HOME`
-5. Generate and install the `brew-update` LaunchAgent for daily Homebrew maintenance
+4. Install OpenCode
+5. Use stow to symlink each config package into `$HOME`
+6. Generate and install the `brew-update` LaunchAgent for daily Homebrew maintenance
 
 ## Structure
 
@@ -44,6 +47,10 @@ dotfiles/
 │   └── .config/nvim/
 │       ├── init.lua
 │       └── lua/
+├── opencode/               → ~/.config/opencode/
+│   └── .config/opencode/
+│       └── opencode.jsonc
+
 ├── tmux/               → ~/.tmux.conf
 │   └── .tmux.conf
 ├── zsh/                → ~/.zshrc
