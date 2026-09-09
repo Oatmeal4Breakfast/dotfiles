@@ -47,8 +47,8 @@ outer.bottom = 5
 # outer.top = [{ monitor.main = 40}, 40]
 outer.top = [
   { monitor."built-in" = 4 }, # Matches MacBook screen (with the notch)
-  { monitor."main" = 10 }, # Applies to whichever display is currently "main"
-  10, # Fallback default for all others
+  { monitor."main" = 10 },    # Applies to whichever display is currently "main"
+  10,                         # Fallback default for all others
 ]
 outer.right = 5
 outer.left = 5
@@ -150,7 +150,10 @@ alt-shift-semicolon = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 
@@ -168,7 +171,6 @@ run = ['move-node-to-workspace 1']
 if.app-id = 'org.chromium.Thorium'
 run = ['move-node-to-workspace 1']
 
-
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = ['move-node-to-workspace 2']
@@ -177,11 +179,14 @@ run = ['move-node-to-workspace 2']
 if.app-id = 'notion.id'
 run = ['move-node-to-workspace 3']
 
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.MobileSMS'
 run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
+if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace 4']
