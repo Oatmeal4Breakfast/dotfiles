@@ -53,6 +53,8 @@ brew "zplug"
 brew "zsh-syntax-highlighting"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # Web browser
