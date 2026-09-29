@@ -13,6 +13,7 @@ Personal configuration files for macOS development environment, managed with [GN
 - **AeroSpace** - i3-style tiling window manager
 - **btop** - Resource monitor TUI
 - **lazygit** - Git TUI
+- **git** - Global gitconfig (SSH signing, delta pager, kanagawa theme)
 - **uv** - Python environment management
 - and much more (see `Brewfile`)
 
@@ -39,6 +40,8 @@ Each top-level directory is a stow package. The internal layout mirrors `$HOME`,
 dotfiles/
 ├── aerospace/          → ~/.aerospace.toml
 │   └── .aerospace.toml
+├── git/                → ~/.gitconfig
+│   └── .gitconfig
 ├── ghostty/            → ~/.config/ghostty/
 │   └── .config/ghostty/
 │       ├── config

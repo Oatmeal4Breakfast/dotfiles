@@ -78,13 +78,14 @@ clear_stow_target() {
 clear_stow_target "$HOME/.zshrc"
 clear_stow_target "$HOME/.tmux.conf"
 clear_stow_target "$HOME/.aerospace.toml"
+clear_stow_target "$HOME/.gitconfig"
 
 # Packages whose top-level stow targets are dirs inside $HOME/.config
 clear_stow_target "$HOME/.config/ghostty"
 clear_stow_target "$HOME/.config/nvim"
 clear_stow_target "$HOME/.config/opencode/opencode.jsonc"
 
-stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh opencode
+stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh opencode git
 echo -e "${GREEN}✓ Stowed all packages${NC}"
 
 # ── LaunchAgents ─────────────────────────────────────────────────────────────

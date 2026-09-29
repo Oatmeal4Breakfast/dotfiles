@@ -1,0 +1,64 @@
+[user]
+  name = Oatmeal4Breakfast
+  email = elvin.salcedo17@gmail.com
+  signingkey = ~/.ssh/id_ed25519.pub
+
+[init]
+  defaultBranch = main
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgsign = true
+
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
+
+[color]
+  ui = auto
+
+[diff]
+  algorithm = histogram
+  renames = true
+  mnemonicPrefix = true
+  statGraphWidth = 10
+  wsErrorHighlight = new
+  colorMoved = plain
+  colorMovedWS = allow-indentation-change
+
+[column]
+  ui = auto
+
+[merge]
+  conflictStyle = zdiff3
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = kanagawa-wave
+  navigate = true
+  line-numbers = true
+  side-by-side = false
+  hyperlinks = true
+
+[delta "kanagawa-wave"]
+  dark = true
+  syntax-theme = "TwoDark"
+  blame-palette = "#1F1F28 #2A2A37 #363646 #54546D #938AA9"
+  commit-decoration-style = "box #938AA9"
+  file-decoration-style = "#938AA9"
+  file-style = "#DCD7BA"
+  hunk-header-decoration-style = "box #938AA9"
+  hunk-header-style = "#DCD7BA"
+  minus-empty-line-marker-style = "#1F1F28"
+  minus-style = "syntax #43242B"
+  plus-empty-line-marker-style = "#1F1F28"
+  plus-style = "syntax #2B3328"
