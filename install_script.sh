@@ -84,8 +84,9 @@ clear_stow_target "$HOME/.gitconfig"
 clear_stow_target "$HOME/.config/ghostty"
 clear_stow_target "$HOME/.config/nvim"
 clear_stow_target "$HOME/.config/opencode/opencode.jsonc"
+clear_stow_target "$HOME/.config/rex"
 
-stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh opencode git
+stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh opencode rex git
 echo -e "${GREEN}✓ Stowed all packages${NC}"
 
 # ── LaunchAgents ─────────────────────────────────────────────────────────────

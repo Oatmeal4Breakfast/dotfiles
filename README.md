@@ -6,6 +6,7 @@ Personal configuration files for macOS development environment, managed with [GN
 
 - **Zsh** - Shell configuration with Starship prompt
 - OpenCode - LLM Coding Harness
+- **Rex** - Terminal multiplexer
 - **Tmux** - Terminal multiplexer for session management
 - **Ghostty** - Fast, modern terminal emulator
 - **Neovim** - LazyVim configuration
@@ -53,7 +54,9 @@ dotfiles/
 ├── opencode/               → ~/.config/opencode/
 │   └── .config/opencode/
 │       └── opencode.jsonc
-
+├── rex/                → ~/.config/rex/
+│   └── .config/rex/
+│       └── init.lua
 ├── tmux/               → ~/.tmux.conf
 │   └── .tmux.conf
 ├── zsh/                → ~/.zshrc
