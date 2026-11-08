@@ -73,6 +73,10 @@ dotfiles/
 > it. OpenCode writes its runtime service password to
 > `~/.config/opencode/service.json`; folding the directory would place that
 > secret inside this repo.
+>
+> To convert an existing folded setup, run `./unfold-opencode.sh` (use
+> `--dry-run` to preview). It stops the service, unfolds the directory, moves
+> runtime files back into `~/.config/opencode`, and re-stows.
 
 ## Manual Stow Usage
 
