@@ -83,10 +83,26 @@ clear_stow_target "$HOME/.gitconfig"
 # Packages whose top-level stow targets are dirs inside $HOME/.config
 clear_stow_target "$HOME/.config/ghostty"
 clear_stow_target "$HOME/.config/nvim"
-clear_stow_target "$HOME/.config/opencode/opencode.jsonc"
 clear_stow_target "$HOME/.config/rex"
 
-stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh opencode rex git
+# OpenCode writes runtime secrets (service.json) into ~/.config/opencode. If
+# Stow folds that directory into a symlink, those files land inside the
+# dotfiles repo. Keep ~/.config/opencode a real directory and symlink only the
+# tracked config files into it.
+if [ -L "$HOME/.config/opencode" ]; then
+  echo -e "${YELLOW}Unfolding $HOME/.config/opencode${NC}"
+  rm "$HOME/.config/opencode"
+fi
+mkdir -p "$HOME/.config/opencode"
+
+# Back up any real config files OpenCode created so Stow can take them over.
+clear_stow_target "$HOME/.config/opencode/opencode.jsonc"
+clear_stow_target "$HOME/.config/opencode/cli.json"
+clear_stow_target "$HOME/.config/opencode/tui.json"
+
+# Stow directory-based packages normally, then OpenCode without folding.
+stow --target="$HOME" --dir="$DOTFILES_DIR" aerospace ghostty nvim tmux zsh rex git
+stow --no-folding --target="$HOME" --dir="$DOTFILES_DIR" opencode
 echo -e "${GREEN}✓ Stowed all packages${NC}"
 
 # ── LaunchAgents ─────────────────────────────────────────────────────────────

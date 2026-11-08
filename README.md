@@ -53,7 +53,9 @@ dotfiles/
 │       └── lua/
 ├── opencode/               → ~/.config/opencode/
 │   └── .config/opencode/
-│       └── opencode.jsonc
+│       ├── opencode.jsonc
+│       ├── cli.json
+│       └── tui.json
 ├── rex/                → ~/.config/rex/
 │   └── .config/rex/
 │       └── init.lua
@@ -66,12 +68,24 @@ dotfiles/
 └── Brewfile
 ```
 
+> The `opencode` package is stowed with `--no-folding`, so `~/.config/opencode`
+> stays a real directory and only the tracked config files are symlinked into
+> it. OpenCode writes its runtime service password to
+> `~/.config/opencode/service.json`; folding the directory would place that
+> secret inside this repo.
+
 ## Manual Stow Usage
 
 To symlink a single package after install:
 
 ```bash
 stow --target="$HOME" --dir="$HOME/dotfiles" <package>
+```
+
+`opencode` must not be folded:
+
+```bash
+stow --no-folding --target="$HOME" --dir="$HOME/dotfiles" opencode
 ```
 
 To remove a package's symlinks:
