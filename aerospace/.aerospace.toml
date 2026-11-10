@@ -1,3 +1,4 @@
+config-version = 2
 # Start AeroSpace at login
 start-at-login = true
 
@@ -47,8 +48,8 @@ outer.bottom = 5
 # outer.top = [{ monitor.main = 40}, 40]
 outer.top = [
   { monitor."built-in" = 4 }, # Matches MacBook screen (with the notch)
-  { monitor."main" = 10 }, # Applies to whichever display is currently "main"
-  10, # Fallback default for all others
+  { monitor."main" = 10 },    # Applies to whichever display is currently "main"
+  10,                         # Fallback default for all others
 ]
 outer.right = 5
 outer.left = 5
@@ -149,7 +150,10 @@ alt-shift-semicolon = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+f = [
+  'layout floating tiling',
+  'mode main',
+] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 
