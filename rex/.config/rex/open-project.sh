@@ -5,7 +5,7 @@
 set -eu
 
 roots=()
-for root in "$HOME/dev" "$HOME/Projects/personal" "$HOME/Projects/work"; do
+for root in "$HOME/dev" "$HOME/dotfiles" "$HOME/Documents" "$HOME/Downloads" "$HOME/homelab"; do
   [[ -d "$root" ]] && roots+=("$root")
 done
 if ((${#roots} == 0)); then
