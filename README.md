@@ -1,105 +1,110 @@
-# My Dotfiles
+# macOS dotfiles
 
-Personal configuration files for macOS development environment, managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal configuration for a Mac Studio and MacBook Pro, managed with
+[GNU Stow](https://www.gnu.org/software/stow/). Both machines use the same
+Brewfile, Stow packages, and LaunchAgents. Machine-specific home paths are
+rendered when the agents are installed.
 
-## What's Included
-
-- **Zsh** - Shell configuration with Starship prompt
-- OpenCode - LLM Coding Harness
-- **Rex** - Terminal multiplexer
-- **Tmux** - Terminal multiplexer for session management
-- **Ghostty** - Fast, modern terminal emulator
-- **Neovim** - LazyVim configuration
-- **Starship** - Cross-shell prompt (default config)
-- **AeroSpace** - i3-style tiling window manager
-- **btop** - Resource monitor TUI
-- **lazygit** - Git TUI
-- **git** - Global gitconfig (SSH signing, delta pager, kanagawa theme)
-- **uv** - Python environment management
-- and much more (see `Brewfile`)
-
-## Quick Install
+## Fresh installation
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Oatmeal4Breakfast/dotfiles/main/install_script.sh | bash
 ```
 
-The script will:
+The installer:
 
-1. Install Homebrew (if needed)
-2. Clone this repo to `~/dotfiles`
-3. Install all packages from `Brewfile` (includes `stow`)
-4. Install OpenCode
-5. Use stow to symlink each config package into `$HOME`
-6. Generate and install the `brew-update` LaunchAgent for daily Homebrew maintenance
+1. Checks for the Xcode Command Line Tools.
+2. Installs Homebrew when needed.
+3. Clones or safely updates `~/dotfiles`.
+4. Installs the shared `Brewfile` and OpenCode.
+5. Restows every configuration package.
+6. Renders and loads the `brew-update` and `wallsync` LaunchAgents.
 
-## Structure
+The installer is repeatable and non-destructive. It does not remove or back up
+configuration that blocks Stow.
 
-Each top-level directory is a stow package. The internal layout mirrors `$HOME`, so stow knows exactly where to create symlinks.
+## Migrating an existing Mac
 
-```
-dotfiles/
-├── aerospace/          → ~/.aerospace.toml
-│   └── .aerospace.toml
-├── git/                → ~/.gitconfig
-│   └── .gitconfig
-├── ghostty/            → ~/.config/ghostty/
-│   └── .config/ghostty/
-│       ├── config
-│       └── shaders/
-├── nvim/               → ~/.config/nvim/
-│   └── .config/nvim/
-│       ├── init.lua
-│       └── lua/
-├── opencode/               → ~/.config/opencode/
-│   └── .config/opencode/
-│       ├── opencode.jsonc
-│       ├── cli.json
-│       └── tui.json
-├── rex/                → ~/.config/rex/
-│   └── .config/rex/
-│       └── init.lua
-├── tmux/               → ~/.tmux.conf
-│   └── .tmux.conf
-├── zsh/                → ~/.zshrc
-│   └── .zshrc
-├── brew-update.plist.template   (LaunchAgent template — __HOME__/__USER__ substituted at install)
-├── brew-update.sh               (called by the LaunchAgent daily at 09:00)
-└── Brewfile
-```
-
-> The `opencode` package is stowed with `--no-folding`, so `~/.config/opencode`
-> stays a real directory and only the tracked config files are symlinked into
-> it. OpenCode writes its runtime service password to
-> `~/.config/opencode/service.json`; folding the directory would place that
-> secret inside this repo.
->
-> To convert an existing folded setup, run `./unfold-opencode.sh` (use
-> `--dry-run` to preview). It stops the service, unfolds the directory, moves
-> runtime files back into `~/.config/opencode`, and re-stows.
-
-## Manual Stow Usage
-
-To symlink a single package after install:
+Preview known legacy links and conflicting configuration:
 
 ```bash
-stow --target="$HOME" --dir="$HOME/dotfiles" <package>
+~/dotfiles/migrate-to-stow.sh
 ```
 
-`opencode` must not be folded:
+Apply the reported migration:
 
 ```bash
-stow --no-folding --target="$HOME" --dir="$HOME/dotfiles" opencode
+~/dotfiles/migrate-to-stow.sh --apply
+~/dotfiles/install_script.sh
 ```
 
-To remove a package's symlinks:
+The migration script only handles paths owned by this repository. It:
+
+- removes legacy absolute or dangling links that point into this checkout;
+- leaves valid Stow links alone unless a package root must be unfolded;
+- moves conflicting real files or directories to timestamped backups;
+- moves OpenCode runtime artifacts out of older folded packages; and
+- verifies the result with a Stow simulation.
+
+Nothing changes without `--apply`.
+
+## Packages
+
+Every package mirrors its path below `$HOME`:
+
+```text
+aerospace/.aerospace.toml
+ghostty/.config/ghostty/
+git/.gitconfig
+lazygit/.config/lazygit/
+nvim/.config/nvim/
+opencode/.config/opencode/
+rex/.config/rex/
+starship/.config/starship.toml
+tmux/.tmux.conf
+zsh/.zshrc
+```
+
+Most packages may be folded into a single directory symlink. OpenCode and Rex
+are always installed with `--no-folding`, leaving `~/.config/opencode` and
+`~/.config/rex` as real directories. This prevents application-generated
+runtime files, dependencies, state, and secrets from being written into the
+Git checkout.
+
+## Manual Stow usage
+
+Restow the normal packages:
 
 ```bash
-stow --delete --target="$HOME" --dir="$HOME/dotfiles" <package>
+cd ~/dotfiles
+stow --restow --target="$HOME" \
+  aerospace ghostty git lazygit nvim starship tmux zsh
 ```
 
-## LaunchAgent
+Restow the packages that must remain unfolded:
 
-The `brew-update` LaunchAgent runs `brew-update.sh` daily at 09:00. The install script generates `com.$USER.brew-update.plist` from the template (substituting your actual `$HOME` and `$USER`) and loads it into `~/Library/LaunchAgents/`.
+```bash
+cd ~/dotfiles
+stow --restow --no-folding --target="$HOME" opencode rex
+```
 
-Logs are written to `~/Library/Logs/brew-maintenance.log`.
+Remove one package:
+
+```bash
+cd ~/dotfiles
+stow --delete --target="$HOME" PACKAGE
+```
+
+## LaunchAgents
+
+The installer renders both templates directly into `~/Library/LaunchAgents`:
+
+- `com.$USER.brew-update.plist`
+- `com.$USER.wallsync.plist`
+
+`__HOME__`, `__USER__`, and `__DOTFILES_DIR__` placeholders are expanded for
+the current machine. Generated plists do not live in this repository.
+
+The maintenance agent updates Homebrew daily and refreshes the Brewfile when
+installed packages change. The wallpaper agent synchronizes the configured
+wallpaper directory daily. Logs are written beneath `~/Library/Logs`.

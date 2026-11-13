@@ -53,16 +53,12 @@ brew "zplug"
 brew "zsh-syntax-highlighting"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
-# OpenAI's official ChatGPT desktop app
-cask "chatgpt"
 # Universal database tool and SQL client
 cask "dbeaver-community"
 # Web browser
 cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Web browser
-cask "google-chrome"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Clipboard manager
@@ -73,8 +69,6 @@ cask "notion"
 cask "shottr"
 # System monitor for the menu bar
 cask "stats"
-uv "dutyy", source: "git+https://github.com/Oatmeal4Breakfast/dutyy.git"
-uv "harlequin[postgres]"
 uv "posting"
 uv "pre-commit"
 uv "ruff"

@@ -2,10 +2,14 @@
 # PATH Configuration
 # ============================================================
 # Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # LM Studio CLI
-export PATH="$PATH:/Users/elvinsalcedo/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # Local bin (if it exists)
 [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
@@ -43,27 +47,32 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 
-# ============================================================ 
-# Completion                                                   
-# ============================================================ 
+# ============================================================
+# Completion
+# ============================================================
 autoload -Uz compinit && compinit
 
-# UV CLI                                                   
+# UV CLI
 export PATH="$HOME/.local/bin:$PATH"
 
 # expand the file descripter limit for my shell
 ulimit -n 10240
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -n "${HOMEBREW_PREFIX:-}" ] &&
+  [ -f "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
 # bun completions
-[ -s "/Users/elvinsalcedo/.bun/_bun" ] && source "/Users/elvinsalcedo/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+if [ -n "${HOMEBREW_PREFIX:-}" ]; then
+  export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
+fi
 export VISUAL="nvim"
 export EDITOR="$VISUAL"

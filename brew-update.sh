@@ -1,13 +1,15 @@
 #!/bin/zsh
 
+set -u
+
 echo "Updating Homebrew..."
 
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR="${0:A:h}"
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 echo "Running git pull..."
-git -C $DOTFILES_DIR pull
+git -C "$DOTFILES_DIR" pull --ff-only
 
 brew update
 
@@ -27,7 +29,9 @@ echo "Committing Brewfile..."
 
 cd "$DOTFILES_DIR"
 git add Brewfile
-git diff --cached --quite || git commit -m "chore: update Brewfile"
-git push || echo "git push failed check ssh agent"
+if ! git diff --cached --quiet; then
+  git commit -m "chore: update Brewfile"
+  git push || echo "git push failed; check the SSH agent"
+fi
 
 echo "Done."

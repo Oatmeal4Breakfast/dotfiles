@@ -1,6 +1,14 @@
 nvim/.config/nvim/lazy-lock.json
-# OpenCode writes its private service password here at runtime
+
+# OpenCode runtime files belong in ~/.config/opencode, not in this package.
+opencode/.config/opencode/.gitignore
+opencode/.config/opencode/node_modules/
+opencode/.config/opencode/package.json
+opencode/.config/opencode/package-lock.json
 opencode/.config/opencode/service.json
-# Generated at install time from the .plist.template files
+
+# Ignored only for machines awaiting migration from the old installer.
 com.*.brew-update.plist
 com.*.wallsync.plist
+
+.DS_Store
